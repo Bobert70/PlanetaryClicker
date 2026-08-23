@@ -85,7 +85,7 @@
         <button id="sustainableEnergy" onclick="sustainableEnergy()" class="upgrade" hidden>Sustainable Energy:<br /> This "upgrade" doesn't actually do anything. But, if you don't do this you WILL be sued by MANY enviromental groups. <br /><span class="price">40000</span></button>
         <br />
         <br />
-        <button id="lobbying" onclick="Lobbying()" class="upgrade" hidden>Lobying congress for a lower minimum wage:<br />This one just lowers the price of workers by lowering thier wage. Its fine...<br /><span id="lobbyingPrice" class="price">50000</span></button>
+        <button id="lobbying" onclick="lobbying()" class="upgrade" hidden>Lobying congress for a lower minimum wage:<br />This one just lowers the price of workers by lowering thier wage. Its fine...<br /><span id="lobbyingPrice" class="price">50000</span></button>
         <br />
         <br />
         <button id="landOwnership" onclick="landOwnership()" class="upgrade" hidden>Land Ownership:<br />It turns out you don't own any land. Well, now you can buy it!! This one increases your resources per second by 20. Wow!<br /><span id="landOwnershipPrice" class="price">75000</span></button>
@@ -258,7 +258,7 @@
                 resources -= 40000;
                 Rdisplay.innerHTML = resources;
                 document.getElementById("sustainableEnergy").remove();
-                document.getElementById("Lobbying").hidden = false;
+                document.getElementById("lobbying").hidden = false;
             }
         }
 
