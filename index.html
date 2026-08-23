@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Planetary Clicker</title>
+    <style>
+        #info {
+            text-align: center;
+            font-family: century gothic;
+        }
+
+        body {
+            color: #033f63;
+            background:#b5b682;
+            font-family: century gothic;
+        }
+
+        #mineResources {
+            background: #7c9885;
+            color: #fedc97;
+            font-family: monospace;
+            width: 250px;
+            height: 25px;
+        }
+
+        .upgrade {
+            color: #483d5c;
+            background: #829cb6;
+            font-family: monospace;
+        }
+
+        .price {
+            color:#033f63;
+            font-family: monospace;
+        }
+
+        #title {color: rgb(0, 0, 92); font-family: century gothic; text-align:left; text-decoration:underline;}
+
+        #upgradeTitle { font-family: century gothic;}
+
+        #resources {font-family: monospace;}
+         #total {
+            float:right;
+            font-size:50%;
+            }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h1 id="title">Planetary Clicker<span id="total">Total Resources: <span id="resourceTotal">0</span></span></h1>
+        <br />
+        <h2>Resources:</h2>
+        <button id="full" class="upgrade" onclick="fullscreen()">Toggle Full screen</button>
+        <h2 id="resources">0</h2>
+        <br />
+        <button onclick="mineResources()" id="mineResources">Mine Resources</button>
+        <br />
+        <p>Resources per second: <span id="RPS">0</span></p>
+        <p>Resources per click: <span id="RPC">1</span></p>
+        <hr />
+    </div>
+    <div id="upgrades">
+        <h3 id="upgradeTitle">Upgrades:</h3>
+        <button class="upgrade" id="metalRod" onclick="metalRod()">Metal Rod: <br /> A shabby metal rod that you found lying in the dust. Allows you to mine one more resource per click.<br /> <span id="metalRodPrice" class="price">30</span></button>
+        <br />
+        <br />
+        <button class="upgrade" id="rustyHammer" hidden onclick="rustyHammer()">Rusty Hammer: <br /> A hammer you found encased in some stone. Way better than the rod, but breaks easily. Increases your resources per click by 2. <br /> <span id="rustyHammerPrice" class="price">65</span></button>
+        <br />
+        <br />
+        <button class="upgrade" id="powerDrill" hidden onclick="powerDrill()">Power Drill: <br /> Automatically mines resources for you, even when you're not present. Gets you 1 resource every second. <br /> <span id="powerDrillPrice" class="price">300</span></button>
+        <br />
+        <br />
+        <button class="upgrade" id="mineshafts" hidden onclick="mineshafts()">Mineshafts: <br /> Helps you understand and make better mineshafts to mine in. Effectively QUADRUPLES your resources per second. <br /> <span id="mineshaftsPrice" class="price">2000</span></button>
+        <br />
+        <br />
+        <button class="upgrade" id="liscensing" onclick="liscensing()" hidden>Liscensing: <br /> Registers your operation with the government. They help you out now. Yay! The help adds up to 12 resources every second. <br /> <span id="liscensingFees" class="price">10000</span></button>
+        <br />
+        <br />
+        <button id="workers" class="upgrade" hidden onclick="workers()">Workers:<br />Hires some workers to help you mine resources. They mine 14 resources every second! <br /> <span id="workersPrice" class="price">15000</span></button>
+        <br />
+        <br />
+        <button id="industrialDrills" onclick="industrialDrills()" class="upgrade" hidden>Industrial Drills: <br /> Allows you to get your hands on some really heavy duty machinary. Even though it's really usefull, you're the only person who can use it, so it increases your resources per click by 20. <br /> <span id="industrialDrillsPrice" class="price">17000</span></button>
+        <br />
+        <br />
+        <button id="tunnelBores" onclick="tunnelBores()" class="upgrade" hidden>Tunnel Bores:<br /> Unlocks some GIANT snake-like drills that bore through the ground in search of resources. Once again, only you can operate them, so it increases your respurces per click by 35. <br /><span id="tunnelBorePrice" class="price">25000</span></button>
+        <br />
+        <br />
+        <button id="sustainableEnergy" onclick="sustainableEnergy()" class="upgrade" hidden>Sustainable Energy:<br /> This "upgrade" doesn't actually do anything. But, if you don't do this you WILL be sued by MANY enviromental groups. <br /><span class="price">40000</span></button>
+        <br />
+        <br />
+        <button id="Lobbying" onclick="Lobbying()" class="upgrade" hidden>Lobying congress for a lower minimum wage:<br />This one just lowers the price of workers by lowering thier wage. Its fine...<br /><span id="lobbyingPrice" class="price">50000</span></button>
+        <br />
+        <br />
+        <button id="landOwnership" onclick="landOwnership()" class="upgrade" hidden>Land Ownership:<br />It turns out you don't own any land. Well, now you can buy it!! This one increases your resources per second by 20. Wow!<br /><span id="landOwnershipPrice" class="price">75000</span></button>
+        <br />
+        <br />
+        <button id="sustainableResources" onclick="sustainableResources()" class="upgrade" hidden>This one isn't an upgrade, but it also doesn't decide wether or not you get sued. This is just for progression. <br /><span class="price">125000</span></button>
+        <br />
+        <br />
+        <button id-="farming" onclick="farming()" class="upgrade" hidden>Well, now you're a farmer. This one increases your resources per click by 40.<br /><span id="farmingPrice" class="price">175000</span></button>
+        <br />
+        <br />
+        <button id="farmingEquipmnent" onclick="farmingEquipment()" class="upgrade" hidden>Farming Equipment:<br />Now you have better equipment to help you farm. Wait, hey! I wanted to say that you were the only person competent enough to operate it! Well, at any rate, this one increases your resources per click by 50.<br /><span id="farmingEquipmentPrice" class="price">250000</span></button>
+        <br />
+        <br />
+        <button id="naturalPesticides" class="upgrade" hidden onclick="naturalPesticides()">All-Natural Pesticides:<br />Now you can spray your fields with some all natural pesticides. These will ONLY kill harmful bugs, and they WON'T mutate anyone. They also increase your resources per second by 16!<span class="price" id="naturalPesticidesPrice">400000S</span></button>
+        <br />
+        <br />
+        <button id="bio-engineeredPlants" class="upgrade" hidden>Bio-engineered Plants:<br />Now your plants can grow at night too! Your RPS will be increased by 32.<br /><span id="bio-engineeredPlantsPrice" class="price"></span></button>
+    </div>
+    <script type="text/javascript">
+
+        let resources = 0;
+        let trueResources = 0;
+        let RPC = 1; //RPC means resources per click
+        let RPS = 0;// RPS means resources per second
+        let Rdisplay = document.getElementById("resources"); // Rdisplay refers to where the resources are shown
+        let Tdisplay = document.getElementById("resourceTotal")
+        function fullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen()
+            } else {
+                document.documentElement.exitFullscreen()
+            }
+        }
+        function mineResources() {
+            resources += RPC;
+            trueResources += RPC;
+            Rdisplay.innerHTML = resources;
+            Tdisplay.innerHTML = trueResources;
+        }
+
+        window.addEventListener("keydown", function(event) {
+            if (event.code === "Space") {
+                if (event.repeat) return
+                mineResources();
+                event.preventDefault();
+            }
+        });
+        setInterval(function() {
+            resources += RPS;
+            trueResources += RPS;
+            Rdisplay.innerHTML = resources;
+            Tdisplay.innerHTML = trueResources;
+        }, 1000);
+
+        //prices
+        let metalRodPrice = 30;
+        let rustyHammerPrice = 65;
+        let powerDrillPrice = 300;
+        let mineshaftsPrice = 1500;
+        let liscensingFees = 10000;
+
+        let workersPriceInterval = 20000;
+
+        let workersPrice = 15000;
+        let industrialDrillsPrice = 17000;
+        let tunnelBorePrice = 25000.;
+        let lobbyingPrice = 50000;
+        let landOwnershipPrice = 75000;
+        let farmingPrice = 175000;
+        let farmingEquipmentPrice = 250000;
+        let naturalPesticidesPrice = 400000;
+
+    //upgrades
+
+        function metalRod() {
+            if (resources >= metalRodPrice) {
+                RPC += 1;
+                resources -= metalRodPrice;
+                Rdisplay.innerHTML = resources;
+                metalRodPrice += 100
+                document.getElementById("rustyHammer").hidden = false;
+                document.getElementById("RPC").innerHTML = RPC;
+                document.getElementById("metalRodPrice").innerHTML = metalRodPrice;
+                }
+        }
+        function rustyHammer() {
+            if (resources >= rustyHammerPrice) {
+                RPC += 2;
+                resources -= rustyHammerPrice;
+                Rdisplay.innerHTML = resources;
+                rustyHammerPrice += 175;
+                document.getElementById("powerDrill").hidden = false;
+                document.getElementById("RPC").innerHTML = RPC;
+                document.getElementById("rustyHammerPrice").innerHTML = rustyHammerPrice;
+            }
+        }
+        function powerDrill() {
+            if (resources >= powerDrillPrice) {
+                RPS += 1;
+                resources -= powerDrillPrice;
+                powerDrillPrice += 350;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("mineshafts").hidden = false;
+                document.getElementById("RPS").innerHTML = RPS;
+                document.getElementById("powerDrillPrice").innerHTML = powerDrillPrice;
+            }
+        }
+        function mineshafts() {
+        if (resources >= mineshaftsPrice) {
+            RPS *= 4;
+            resources -= mineshaftsPrice;
+            mineshaftsPrice *= 5;
+            Rdisplay.innerHTML = resources;
+            document.getElementById("RPS").innerHTML = RPS;
+            document.getElementById("liscensing").hidden = false;
+            document.getElementById("mineshaftsPrice").innerHTML = mineshaftsPrice;
+        }
+        }
+        function liscensing() {
+        if (resources >= liscensingFees) {
+        RPS += 8;
+        resources -= liscensingFees;
+        liscensingFees += 17000;
+        Rdisplay.innerHTML = resources;
+        document.getElementById("RPS").innerHTML = RPS;
+        document.getElementById("liscensingFees").innerHTML = liscensingFees;
+        document.getElementById("workers").hidden = false;
+        }
+        }
+
+        function workers() {
+            if (resources >= workersPrice) {
+                RPS += 12;
+                resources -= workersPrice;
+                workersPrice += workersPriceInterval;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("RPS").innerHTML = RPS;
+                document.getElementById("workersPrice").innerHTML = workersPrice;
+                document.getElementById("industrialDrills").hidden = false;
+            }
+        }
+
+        function industrialDrills() {
+            if (resources >= industrialDrillsPrice) {
+                RPC += 20;
+                resources -= industrialDrillsPrice;
+                industrialDrillsPrice += 15000;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("RPC").innerHTML = RPC;
+                document.getElementById("industrialDrillsPrice").innerHTML = industrialDrillsPrice;
+                document.getElementById("tunnelBores").hidden = false;
+            }
+        }
+
+        function tunnelBores() {
+            if (resources >= tunnelBorePrice) {
+            RPC += 35;
+            resources -= tunnelBorePrice;
+            tunnelBorePrice += 30000;
+            Rdisplay.innerHTML = resources;
+            document.getElementById("RPC").innerHTML = RPC;
+            document.getElementById("tunnelBorePrice").innerHTML = tunnelBorePrice;
+            document.getElementById("sustainableEnergy").hidden = false;
+            }
+        }
+
+        function sustainableEnergy() {
+            if (resources >= 40000) {
+                resources -= 40000;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("sustainableEnergy").remove();
+                document.getElementById("Lobbying").hidden = false;
+            }
+        }
+
+        function Lobbying() {
+            if (resources >= lobbyingPrice) {
+                resources -= lobbyingPrice;
+                workersPrice -= 15000;
+                workersPriceInterval -= 750;
+                lobbyingPrice += 40000;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("workersPrice").innerHTML = workersPrice;
+                document.getElementById("lobbingPrice").innerHTML = lobbyingPrice;
+                document.getElementById("landOwnership").hidden = false;
+                  }
+        }
+
+        function landOwnership() {
+            if(resources>= landOwnershipPrice) {
+                RPS += 20;
+                resources -= landOwnershipPrice;
+                landOwnershipPrice += 80000;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("landOwnershipPrice").innerHTML = landOwnershipPrice;
+                document.getElementById("RPS").innerHTML = RPS;
+                document.getElementById("sustainableResources").hidden = false;
+            }
+        }
+
+        function sustainableResources() {
+            if (resources >= 125000) {
+                resources -= 125000;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("sustainableResources").remove();
+                document.getElementById("farming").hidden = false;
+            }
+        }
+
+        function farming() {
+            if (resources >= farmingPrice) {
+                RPC += 40;
+                resources -= farmingPrice;
+                farmingPrice += 200000
+                Rdisplay.innerHTML = resources;
+                document.getElementById("RPC").innerHTML = RPC;
+                document.getElementById("farmingPrice").innerHTML = farmingPrice;
+                document.getElementById("farmingEquipment").hidden = false;
+            }
+        }
+
+        function farmingEquipment() {
+            if(resources >= farmingEquipmentPrice) {
+                RPC += 50;
+                resources -=farmingEquipmentPrice;
+                farmingEquipment += 300000;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("farmingEquipmentPrice").innerHTML = farmingEquipmentPrice;
+                document.getElementById("RPC").innerHTML = RPC;
+                document.getElementById("naturalPesticides").hidden = false;
+            }
+        }
+
+        function naturalPesticides() {
+            if (resources >= naturalPesticidesPrice) {
+                RPS += 16;
+                resources -= naturalPesticidesPrice;
+                naturalPesticidesPrice += 500000;
+                Rdisplay.innerHTML = resources;
+                document.getElementById("RPS").innerHTML = RPS;
+                document.getElementById("naturalPesticidesPrice").innerHTML = naturalPesticidesPrice;
+            }
+        }
+    </script>
+</body>
+</html>
