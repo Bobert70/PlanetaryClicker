@@ -1,0 +1,1 @@
+This is an html clicker game, similar to the goat Cookie Clicker. Unlike, Cookie Clicker, it is centered around being set on another planet. You find yourself on this planet as you attempt to build your empire by collecting resources. You may do some unethucal things along the way, but it is all worth it in the end.
