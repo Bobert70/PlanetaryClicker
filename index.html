@@ -37,8 +37,8 @@
             font-family: eightgon;
             border: none;
             border-radius: 4px;
-            width:75%;
-            height:90px;
+            width:85%;
+            height:124px;
             font-size:100%;
         }
 
@@ -54,7 +54,7 @@
 
         #total {font-size:120%;}
 
-        #full {height:50px; width: 95px;}
+        #full {height:60px; width: 95px;}
     </style>
 </head>
 <body>
@@ -110,19 +110,19 @@
         <button id="landOwnership" onclick="landOwnership()" class="upgrade" hidden>Land Ownership:<br />It turns out you don't own any land. Well, now you can buy it!! This one increases your resources per second by 20. Wow!<br /><span id="landOwnershipPrice" class="price">75000</span></button>
         <br />
         <br />
-        <button id="sustainableResources" onclick="sustainableResources()" class="upgrade" hidden>This one isn't an upgrade, but it also doesn't decide wether or not you get sued. This is just for progression. <br /><span class="price">125000</span></button>
+        <button id="sustainableResources" onclick="sustainableResources()" class="upgrade" hidden>Sustainable Resources: <br />This one isn't an upgrade, but it also doesn't decide wether or not you get sued. This is just for progression. <br /><span class="price">125000</span></button>
         <br />
         <br />
-        <button id="farming" onclick="farming()" class="upgrade" hidden>Well, now you're a farmer. This one increases your resources per click by 40.<br /><span id="farmingPrice" class="price">175000</span></button>
+        <button id="farming" onclick="farming()" class="upgrade" hidden>Farming: <br />Well, now you're a farmer. This one increases your resources per click by 40.<br /><span id="farmingPrice" class="price">175000</span></button>
         <br />
         <br />
-        <button id="farmingEquipment" onclick="farmingEquipment()" class="upgrade" hidden>Farming Equipment:<br />Now you have better equipment to help you farm. Wait, hey! I wanted to say that you were the only person competent enough to operate it! Well, at any rate, this one increases your resources per click by 50.<br /><span id="farmingEquipmentPrice" class="price">250000</span></button>
+        <button id="farmingEquipment" onclick="farmingEquipment()" class="upgrade" hidden>Farming Equipment:<br />Now you have better equipment for farming. Wait, hey! I wanted to say that you were the only person competent enough to operate it! Well, at any rate, this one increases your resources per click by 60.<br /><span id="farmingEquipmentPrice" class="price">250000</span></button>
         <br />
         <br />
-        <button id="naturalPesticides" class="upgrade" hidden onclick="naturalPesticides()">All-Natural Pesticides:<br />Now you can spray your fields with some all natural pesticides. These will ONLY kill harmful bugs, and they WON'T mutate anyone. They also increase your resources per second by 16!<span class="price" id="naturalPesticidesPrice">400000S</span></button>
+        <button id="naturalPesticides" class="upgrade" hidden onclick="naturalPesticides()">All-Natural Pesticides:<br />Now you can spray your fields with some all natural pesticides. These will ONLY kill harmful bugs, and they WON'T mutate anyone. They also increase your resources per second by 20!<br /><span class="price" id="naturalPesticidesPrice">400000S</span></button>
         <br />
         <br />
-        <button id="bio-engineeredPlants" class="upgrade" hidden>Bio-engineered Plants:<br />Now your plants can grow at night too! Your RPS will be increased by 32.<br /><span id="bio-engineeredPlantsPrice" class="price"></span></button>
+        <button id="bio-engineeredPlants" class="upgrade" hidden>Bio-engineered Plants:<br />Now your plants can grow at night too! Your RPS will be increased by 70.<br /><span id="bio-engineeredPlantsPrice" class="price">Coming Soon!</span></button>
         <footer>Made with Eightgon font</footer>
         <br />
         <br />
@@ -131,7 +131,7 @@
     </div>
     <script type="text/javascript">
 
-        let resources = 0;
+        let resources = 9999999999999999;
         let trueResources = 0;
         let RPC = 1; //RPC means resources per click
         let RPS = 0;// RPS means resources per second
@@ -332,9 +332,9 @@
 
         function farmingEquipment() {
             if(resources >= farmingEquipmentPrice) {
-                RPC += 50;
+                RPC += 60;
                 resources -=farmingEquipmentPrice;
-                farmingEquipment += 300000;
+                farmingEquipmentPrice += 300000;
                 Rdisplay.innerHTML = resources;
                 document.getElementById("farmingEquipmentPrice").innerHTML = farmingEquipmentPrice;
                 document.getElementById("RPC").innerHTML = RPC;
@@ -344,12 +344,13 @@
 
         function naturalPesticides() {
             if (resources >= naturalPesticidesPrice) {
-                RPS += 16;
+                RPS += 20;
                 resources -= naturalPesticidesPrice;
                 naturalPesticidesPrice += 500000;
                 Rdisplay.innerHTML = resources;
                 document.getElementById("RPS").innerHTML = RPS;
                 document.getElementById("naturalPesticidesPrice").innerHTML = naturalPesticidesPrice;
+                document.getElementById("bio-engineeredPlants").hidden = false
             }
         }
     </script>
