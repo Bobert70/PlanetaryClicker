@@ -56,6 +56,18 @@
             font-family: monospace;
             font-size:160%;
         }
+        
+        .cheat-code {
+            width: 80px;
+            height: 40px;
+            border: none;
+            color:#26176C;
+            background:#5B80B9;
+            font-family: monospace;
+            border-radius:15px;
+            padding: 10px;
+            margin: 10px;
+        }
 
         #title {color: rgb(0, 0, 92); font-family: eightgon;}
 
@@ -132,14 +144,17 @@
         <br />
         <br />
         <button id="bio-engineeredPlants" class="upgrade" hidden>Bio-engineered Plants:<br />Now your plants can grow at night too! Your RPS will be increased by 70.<br /><span id="bio-engineeredPlantsPrice" class="price">Coming Soon!</span></button>
+    </div>
+        <h3>Sponsored by the wonderful Bruce.</h3>
+        <input class="cheat-code" id="chea" type="text" />
+        <input type="submit" class="cheat-code" id="submit" onclick="cheatered()" />
         <footer>Made with Eightgon font</footer>
         <br />
         <br />
         <br />
-        <a href="http://scripts.sil.org/OFL">SIL font liscense</a
-    </div>
+        <a href="http://scripts.sil.org/OFL">SIL font liscense</a>
     <script type="text/javascript">
-        alert("Please note that this game is sponsered by the wonderfull Bruce.")
+        //alert("Please note that this game is sponsered by the wonderfull Bruce. ")
         let resources = 0;
         let trueResources = 0;
         let RPC = 1; //RPC means resources per click
@@ -191,7 +206,32 @@
         let farmingPrice = 175000;
         let farmingEquipmentPrice = 250000;
         let naturalPesticidesPrice = 400000;
-
+        
+        function cheatered() {
+            const code=document.getElementById("chea").value;
+            switch(code) {
+                case "123":
+                    RPC += 10;
+                    document.getElementById("RPC").innerHTMI = RPC
+                    break;
+                case "67":
+                    resources += 1000;
+                    break;
+                case "69":
+                    RPS += 30;
+                    document.getElementById("RPS").innerHTML = RPS
+                    break;
+                case "17":
+                    resources += 1000000;
+                    break;
+                case "Bruce is cool.":
+                    resources = Infinity;
+                    break;
+                default :
+                    alert("wrong. try again.");
+                    break; 
+            }
+        }
     //upgrades
 
         function metalRod() {
@@ -365,3 +405,4 @@
     </script>
 </body>
 </html>
+
